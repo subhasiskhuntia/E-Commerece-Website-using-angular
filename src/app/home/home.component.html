@@ -1,0 +1,24 @@
+<app-header></app-header>
+<app-banner></app-banner>
+<div>
+    <h2>Top Brand</h2>
+    <div class="topBrandContainer">
+
+        <div *ngFor="let brand of brands" class="divImage">
+            <!-- <a routerLink="products/brands"> -->
+                
+                <img src={{brand.url}} alt="" routerLink="products/brands/{{brand.id}}">
+            <!-- </a> -->
+        </div>
+    </div>
+</div>
+<div>
+<h2>Top Picks</h2>
+<div class="topPicksContainer">
+
+    <div *ngFor="let cat of category" class="divImage">
+        <img src={{cat.url}} alt="" width="300px" routerLink="products/category/{{cat.id}}">
+    </div>
+</div>
+</div>
+<!-- <app-footer></app-footer> -->

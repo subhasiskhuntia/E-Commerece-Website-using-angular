@@ -1,0 +1,71 @@
+<form [formGroup]="filterFormRef" (ngSubmit)="filterSubmit()">
+    
+    <div id="sort">
+        <!-- <h6>SORT BY</h6> -->
+        <select name="options" id="options" formControlName="order">
+            <option value="" disabled selected>Sort By:</option>
+            <option value="desc">High to Low</option>
+            <option value="asc">Low to High</option>
+        </select>
+    </div>
+    <div id="filterAndClear">
+
+        <h1>FILTERS</h1>
+        <p>CLEAR ALL</p>
+    </div>
+    <h3>Genders</h3>
+    <div *ngFor="let gen of gender ;let i=index" formArrayName="gender">
+        <input type="checkbox" name="" id="" [formControlName]="i">
+        <label for={{gen}}>{{gen}}</label>
+    </div>
+    <h3>Categories</h3>
+    <div class="categories">
+
+        <div *ngFor="let cat of categories; let i=index" formArrayName="category" >
+            
+            <input type="checkbox" name="" id="" [formControlName]="i">
+            <label for={{cat}}>{{cat}}</label>
+        </div>
+    </div>
+    <h3>Brands</h3>
+    <div class="brands">
+
+        <div *ngFor="let brand of brands; let i=index" formArrayName="brand" >
+            
+            <input type="checkbox" name="" id="" [formControlName]="i">
+            <label for={{brand}}>{{brand}}</label>
+        </div>
+    </div>
+    <div>
+        <h3>Range</h3>
+        <div>
+            <label for="from">From</label>
+            <br>
+            <input type="number" name="from" id="from" formControlName="minPrice">
+        </div>
+        <div>
+            <label for="to">To</label>
+            <br>
+            <input type="number" name="to" id="to" formControlName="maxPrice">
+        </div>
+    </div>
+    <div>
+        <h3>Maximum Discount</h3>
+        <!-- <label for="discount">Maximum Discont</label> -->
+        <input type="number" name="discount" formControlName="discount">
+    </div>
+    <h3>Colors</h3>
+    <div class="color">
+
+        <div *ngFor="let color of colors ;let i=index" formArrayName="color">
+            <input type="checkbox" name="" id="" [formControlName]="i">
+            <label for={{color}}>{{color}}</label>
+        </div>
+    </div>
+    <br>
+    <div style="display: flex; justify-content:center">
+
+        <input type="submit" value="Filter" class="submit">
+    </div>
+
+</form>

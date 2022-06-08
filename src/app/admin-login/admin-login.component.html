@@ -1,0 +1,24 @@
+<form #loginRef="ngForm" (submit)="checkAdmin(loginRef)" method="post">
+    <h2>Welcome Admin</h2>
+    <label for="UserName">Admin Username </label>
+    <br />
+    <input type="email" name="username" id="username" placeholder="enter your email" ngModel required />
+    <br />
+    <div *ngIf="loginRef.controls['username'].invalid && (loginRef.controls['username'].dirty || loginRef.controls['username'].touched)">
+       <span style="color: red;">please enter email</span>
+    </div>
+    <label for="password">Admin Password</label>
+    <br />
+    <input type="password" placeholder="enter your password" name="password" id="password" ngModel required pattern="^(?=.{5,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$" />
+
+    <br />
+    <div *ngIf="loginRef.controls['password'].invalid && (loginRef.controls['password'].dirty || loginRef.controls['password'].touched)">
+        <span style="color: red;" *ngIf="loginRef.controls['password'].errors?.['required']">please enter your password</span>
+        <span style="color: red;" *ngIf="loginRef.controls['password'].errors?.['pattern']">password must be 5 characters and contain small, capital letters and special character </span>
+    </div>
+    <br />
+    <input type="submit" value="Submit" [disabled]="loginRef.invalid" />
+    <div class="signin">
+        <a routerLink="../signin">Signin</a>
+    </div>
+</form>

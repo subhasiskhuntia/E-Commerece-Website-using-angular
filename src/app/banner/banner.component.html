@@ -1,0 +1,11 @@
+<div class="slideshow-container">
+    <img src={{currentBanner}} alt="" width="100%">
+<br />
+
+<!-- The dots/circles -->
+<div style="text-align: center">
+  <span *ngFor="let banner of bannerList">
+
+    <span  class="dot" (click)="currentSlide(banner.url)" ></span>
+  </span>
+</div>

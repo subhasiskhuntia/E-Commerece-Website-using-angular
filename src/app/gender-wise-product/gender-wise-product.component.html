@@ -1,0 +1,16 @@
+<app-header></app-header>
+<div style="display:flex ;">
+    <app-filter-product (event)="receiveFilteredProduct($event)">
+
+    </app-filter-product>
+    <div *ngIf="products==[]"></div>
+    <div id="productContainer">
+        <div *ngFor="let product of products let i=index" class="products" routerLink="/product/details/{{product.id}}">
+            <img src={{product.images.image1}} alt="">
+            <h3>{{product.brand.name}}</h3>
+            <h5>{{product.name}}</h5>
+            <h3>Rs. {{product.sizeAndQuantity[0].price}}</h3>
+            
+        </div>
+    </div>
+</div>

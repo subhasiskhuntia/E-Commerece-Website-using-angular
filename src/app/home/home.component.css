@@ -1,0 +1,24 @@
+.divImage{
+    /* display: inline; */
+    display: inline;
+}
+.topBrandContainer,.topPicksContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+h2{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 25px;
+    font-weight: 500px;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 50px;
+}
+img{
+    margin: 5px;
+    width: 300px;
+}

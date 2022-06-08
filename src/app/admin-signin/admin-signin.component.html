@@ -1,0 +1,27 @@
+<form method="post" [formGroup]="formSignIn" method="post" (ngSubmit)="submitAdmin()">
+    <H2>SignIn Here</H2>
+    <br>
+    <label for="firstName">First Name <span *ngIf="formSignIn.controls['firstName'].invalid && (formSignIn.controls['firstName'].dirty || formSignIn.controls['firstName'].touched)" style="color: red;">*</span></label>
+
+    <input type="text" name="firstName" id="firstName" formControlName="firstName">
+    
+    <label for="lastName">Last Name<span *ngIf="formSignIn.controls['lastName'].invalid && (formSignIn.controls['lastName'].dirty || formSignIn.controls['lastName'].touched)" style="color: red;">*</span></label>
+    <input type="text" name="lastName" id="lastName" formControlName="lastName">
+    
+    <label for="email">Username<span *ngIf="formSignIn.controls['email'].invalid && (formSignIn.controls['email'].dirty || formSignIn.controls['email'].touched)" style="color: red;">*</span></label>
+    
+    <input type="email" name="email" id="email" formControlName="email">
+    
+    <label for="password">password<span *ngIf="formSignIn.controls['password'].invalid && (formSignIn.controls['password'].dirty || formSignIn.controls['password'].touched)" style="color: red;">*</span></label>
+    <input type="password" name="password" id="password" formControlName="password">
+    <div id="passwordMessage" *ngIf="formSignIn.controls['password'].errors?.['pattern']" style="color: red; font-size:11px ;">Password Must be at least 5 character long and contains one special character, one capital and one small letter</div>
+    
+    <label for="phone number">Phone<span *ngIf="formSignIn.controls['phone'].invalid && (formSignIn.controls['phone'].dirty || formSignIn.controls['phone'].touched)" style="color: red;">*</span></label>
+    <input type="text" name="phone" id="phone" formControlName="phone">
+    
+    <label for="address">Address<span *ngIf="formSignIn.controls['address'].invalid && (formSignIn.controls['address'].dirty || formSignIn.controls['address'].touched)" style="color: red;">*</span></label>
+    <input type="text" name="address" id="address" formControlName="address">
+    <br>
+    <br>
+    <input type="submit" value="Submit" id="submit" [disabled]="formSignIn.invalid">
+</form>

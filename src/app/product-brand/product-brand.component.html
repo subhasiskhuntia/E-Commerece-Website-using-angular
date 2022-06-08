@@ -1,0 +1,20 @@
+<form #productBrandRef="ngForm" (ngSubmit)="saveProductBrand
+    (productBrandRef)">
+    <h2>Product Brand Add</h2>
+    <label for="Type of Product">Name of Brand</label>
+    <br>
+    <input type="text" name="name" id="name" required ngModel>
+    <br>
+    <label for="url">Image</label>
+    <br>
+    <input type="text" name="url" id="url" required ngModel>
+    <br>
+    <input type="submit" value="Submit" [disabled]="productBrandRef.invalid">
+</form>
+<div *ngFor="let brand of listOfBrand">
+    <p>{{brand.name}}</p>
+    <br>
+    <img src={{brand.url}} alt="image" style="width: 100px;">
+    <br>
+    <button>Edit</button>
+</div>

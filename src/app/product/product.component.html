@@ -1,0 +1,97 @@
+<div *ngFor="let product of products" style="display: flex">
+  <!-- <div>{{product.pid}}</div>
+    <div>{{product.pname}}</div>
+    <div>{{product.price}}</div>
+    <div> <img src={{product.url}} alt="" width="100px"></div>
+    <div><input type="button" value="Delete" (click)="deleteRec(product.pid)"></div> -->
+  <input type="button" value="update" (click)="updateRec(product)" />
+  <span>{{ deleteMsg }}</span>
+</div>
+<div>
+  <form [formGroup]="productRef" method="post" (ngSubmit)="storeProduct()" style="
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 50%;
+      margin: auto;
+    ">
+    <h2 style="display: flex; justify-content: center; align-items: center">
+      Enter Product Details
+    </h2>
+    <label for="name">Name <span style="color: red">*</span></label>
+    <br />
+    <input type="text" name="name" id="name" formControlName="name"  required/>
+    <br />
+    <label for="description">Description</label>
+    <br /><input type="text" name="description" id="description" formControlName="description" />
+    <br />
+    <label for="price">Price<span style="color: red">*</span></label>
+    <br /><input type="number" name="price" id="price" formControlName="price" required />
+
+    <br /><label for="quantity">Quantity<span style="color: red">*</span></label>
+    <br /><input type="number" name="quantity" id="quantity" formControlName="quantity" required />
+
+    <br /><label for="color">Color<span style="color: red">*</span></label>
+    <br /><input type="text" name="color" id="color" formControlName="color"  required/>
+
+    <br /><label for="size">Size<span style="color: red">*</span></label>
+    <br />
+    <input type="text" name="size" id="size" formControlName="size"  required/>
+    <br />
+    <label for="SpecialMarkingForProduct">Special marking for product<span style="color: red">*</span></label>
+    <br /><input type="text" name="sku" id="sku" formControlName="sku"  required/>
+    <br />
+    <label for="gender">Gender<span style="color: red">*</span></label>
+    <br /><select name="gender" id="gender" formControlName="gender" required>
+      <option value="man">Man</option>
+      <option value="woman">Woman</option>
+      <option value="kid">Kid</option>
+      <option value="baby">Baby</option>
+    </select>
+    <br />
+    <label for="Discount">Discount</label>
+    <br /><select name="discount" id="discount" formControlName="discount">
+      <option></option>
+      <option *ngFor="let discount of discounts" [value]="discount.discount_percent">
+        {{ discount.discount_percent }}
+      </option>
+      <option value="other">other</option>
+    </select>
+    <input type="text" name="discount" id="discount" formControlName="discountAlternative"
+      *ngIf="productRef.value.discount == 'other'"  required/>
+
+    <br /><label for="brand">Brand<span style="color: red">*</span></label>
+    <br />
+    <select name="brand" id="brand" formControlName="brand" required>
+      <option *ngFor="let brand of brands" [value]="brand.name">
+        {{ brand.name }}
+      </option>
+      <option value="other">other</option>
+    </select>
+    <input type="text" name="brand" id="brand" formControlName="brandAlternative"
+      *ngIf="productRef.value.brand == 'other'"  required/>
+    <br />
+
+    <label for="category">category<span style="color: red">*</span></label><br />
+    <select name="category" id="category" formControlName="category" required>
+      <option *ngFor="let category of categories" [value]="category.type">
+        {{ category.type }}
+      </option>
+      <option value="other">other</option>
+    </select>
+    <input type="text" name="category" id="category" formControlName="categoryAlternative"
+      *ngIf="productRef.value.category == 'other'"  required/>
+    <label for="images">image1<span style="color: red">*</span></label>
+    <br /><input type="text" name="image1" id="image1" formControlName="image1"  required/><br />
+    <label for="images">image2</label><br />
+    <input type="text" name="image2" id="image2" formControlName="image2" /><br />
+    <label for="images">image3</label><br />
+    <input type="text" name="image3" id="image3" formControlName="image3" /><br />
+    <label for="images">image4</label><br />
+    <input type="text" name="image4" id="image4" formControlName="image4" /><br />
+    <label for="images">image5</label><br />
+    <input type="text" name="image5" id="image5" formControlName="image5" /><br />
+    <input type="submit" value="Submit" #bName (submit)="storeProduct(bName.value)"  [disabled]="productRef.invalid"/>
+  </form>
+  <div>{{ message }}</div>
+</div>

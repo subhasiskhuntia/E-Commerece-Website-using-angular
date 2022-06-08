@@ -1,0 +1,17 @@
+<app-product-brand></app-product-brand>
+<app-product-category></app-product-category>
+<app-product></app-product>
+<form #bannerRef="ngForm" (ngSubmit)="saveBanner(bannerRef)">
+    <h2>Banner Image Set</h2>
+    <input type="text" name="url" id="url" ngModel>
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+<div>{{message}}</div>
+<div *ngFor="let banner of banners">
+    <div>{{banner.id}}</div>
+<img src={{banner.url}} alt="" width="500px">
+<br>
+<button (click)="deleteBanner(banner.id)">Delete</button>
+</div>

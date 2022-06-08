@@ -1,0 +1,20 @@
+<form #productCategoryRef="ngForm" (ngSubmit)="saveProductCategory
+    (productCategoryRef)">
+    <h2>Product Category Add</h2>
+    <label for="Type of Product">Type of Product</label>
+    <br>
+    <input type="text" name="type" id="type" required ngModel>
+    <br>
+    <label for="url">Image</label>
+    <br>
+    <input type="text" name="url" id="url" required ngModel>
+    <br>
+    <input type="submit" value="Submit" [disabled]="productCategoryRef.invalid">
+</form>
+<div *ngFor="let category of listOfCategory">
+    <p>{{category.type}}</p>
+    <br>
+    <img src={{category.url}} alt="image" style="width: 100px;">
+    <br>
+    <button>Edit</button>
+</div>
