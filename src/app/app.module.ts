@@ -22,6 +22,8 @@ import { GenderWiseProductComponent } from './gender-wise-product/gender-wise-pr
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { FilterProductComponent } from './filter-product/filter-product.component';
 import { ProductPageComponent } from './product-page/product-page.component';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { UserSigninComponent } from './user-signin/user-signin.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { ProductPageComponent } from './product-page/product-page.component';
     GenderWiseProductComponent,
     ProductDetailComponent,
     FilterProductComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    UserLoginComponent,
+    UserSigninComponent
   ],
   imports: [
     BrowserModule,

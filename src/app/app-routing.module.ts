@@ -11,12 +11,14 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductPageComponent } from './product-page/product-page.component';
 import { FilterRouteResolver } from './resolvers/filter.resolver';
 import { RouteResolver } from './resolvers/route.resolver';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { UserSigninComponent } from './user-signin/user-signin.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, resolve: { data: RouteResolver } },
   { path: 'admin', component: AdminComponent },
   { path: 'admin/login', component: AdminLoginComponent },
-  { path: 'signin', component: AdminSigninComponent },
+  { path: 'admin/signin', component: AdminSigninComponent },
   {
     path: 'products/brands/:id',
     component: ProductBrandWiseComponent,
@@ -32,13 +34,21 @@ const routes: Routes = [
     component: GenderWiseProductComponent,
     pathMatch: 'full',
     resolve: { filteredData: FilterRouteResolver },
-
   },
   { path: 'product/details/:id', component: ProductDetailComponent },
   {
     path: 'productPage/:search',
     component: ProductPageComponent,
     resolve: { filteredData: FilterRouteResolver },
+  },
+  {
+    path: 'login',
+    component: UserLoginComponent,
+  },
+  {
+    path: 'signin',
+    component: UserSigninComponent,
+    pathMatch: 'full',
   },
 ];
 

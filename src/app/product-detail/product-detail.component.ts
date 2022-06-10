@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CartItem } from '../cart-item';
 import { Product } from '../product';
 import { ProductDetailService } from '../product-detail.service';
+import { ShoppingCart } from '../shopping-cart';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,7 +12,8 @@ import { ProductDetailService } from '../product-detail.service';
 })
 export class ProductDetailComponent implements OnInit {
   id!: number;
-  constructor(private pd: ProductDetailService, private route: ActivatedRoute) {
+  message:string="Add to Cart";
+  constructor(private pd: ProductDetailService, private route: ActivatedRoute,private router:Router) {
     this.route.params.subscribe((result) => (this.id = result['id']));
   }
 
@@ -21,13 +24,28 @@ export class ProductDetailComponent implements OnInit {
   loadProductDetails() {
     this.pd.loadProductDetails(this.id).subscribe(
       (result) => {
-
-        (this.product = result);
+        this.product = result;
         console.log(this.product);
-        
       },
       (error) => console.log(error),
       () => console.log('completed')
     );
+  }
+  addToCart() {
+    let cartItem: CartItem = new CartItem(0, 1, this.product);
+    let userId: number = Number(sessionStorage.getItem('userId'));
+    let cart: ShoppingCart = new ShoppingCart(0, [cartItem], userId);
+    console.log(cart);
+    if(sessionStorage.getItem("userId")==null){
+      console.log("Login First");
+      this.router.navigate(["/login"])
+    }
+    
+    return this.pd
+      .addToProduct(cart)
+      .subscribe((result) => {
+        console.log(result);
+        this.message=result;
+      })
   }
 }
