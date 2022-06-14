@@ -24,6 +24,7 @@ import { FilterProductComponent } from './filter-product/filter-product.componen
 import { ProductPageComponent } from './product-page/product-page.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserSigninComponent } from './user-signin/user-signin.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { UserSigninComponent } from './user-signin/user-signin.component';
     FilterProductComponent,
     ProductPageComponent,
     UserLoginComponent,
-    UserSigninComponent
+    UserSigninComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

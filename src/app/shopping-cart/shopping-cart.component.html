@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div id="cartContainer">
+    <div *ngFor="let item of cart.cartItems" id="cartItem">
+        <img src="{{ item.cartProduct.images.image1 }}" alt="" width="100px" />
+        <div id="aboutProduct">
+            <div>{{ item.cartProduct.brand.name }}</div>
+            <div>{{ item.cartProduct.name }}</div>
+        </div>
+        <div id="quantityAdjuster">
+            <button>-</button>
+            <span>1</span>
+            <button>+</button>
+        </div>
+        <div id="price">Rs. {{ item.cartProduct.sizeAndQuantity[0].price }}</div>
+        <div id="delete">
+            <img src="https://img.myloview.com/stickers/delete-icon-thin-linear-delete-outline-icon-isolated-on-white-background-line-vector-delete-sign-symbol-for-web-and-mobile-700-254777605.jpg" alt="" height="40px">
+        </div>
+    </div>
+    <div id="totalPrice">
+        <div>Total:</div>
+        <div>XXX</div>
+    </div>
+    <div>
+        <Button id="buynow">Buy Now</Button>
+    </div>
+</div>

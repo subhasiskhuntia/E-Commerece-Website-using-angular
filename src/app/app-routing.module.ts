@@ -11,6 +11,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductPageComponent } from './product-page/product-page.component';
 import { FilterRouteResolver } from './resolvers/filter.resolver';
 import { RouteResolver } from './resolvers/route.resolver';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserSigninComponent } from './user-signin/user-signin.component';
 
@@ -50,6 +51,10 @@ const routes: Routes = [
     component: UserSigninComponent,
     pathMatch: 'full',
   },
+  {
+    path:"cart",
+    component:ShoppingCartComponent
+  }
 ];
 
 @NgModule({

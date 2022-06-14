@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartItem } from '../cart-item';
+import { CartService } from '../cart.service';
 import { Product } from '../product';
 import { ProductDetailService } from '../product-detail.service';
 import { ShoppingCart } from '../shopping-cart';
@@ -12,8 +13,14 @@ import { ShoppingCart } from '../shopping-cart';
 })
 export class ProductDetailComponent implements OnInit {
   id!: number;
-  message:string="Add to Cart";
-  constructor(private pd: ProductDetailService, private route: ActivatedRoute,private router:Router) {
+  message: string = 'Add to Cart';
+  totalItem!: number;
+  constructor(
+    private pd: ProductDetailService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private cartService:CartService
+  ) {
     this.route.params.subscribe((result) => (this.id = result['id']));
   }
 
@@ -36,16 +43,24 @@ export class ProductDetailComponent implements OnInit {
     let userId: number = Number(sessionStorage.getItem('userId'));
     let cart: ShoppingCart = new ShoppingCart(0, [cartItem], userId);
     console.log(cart);
-    if(sessionStorage.getItem("userId")==null){
-      console.log("Login First");
-      this.router.navigate(["/login"])
+    if (sessionStorage.getItem('userId') == null) {
+      console.log('Login First');
+      this.router.navigate(['/login']);
     }
+
+    this.pd.addToProduct(cart).subscribe((result) => {
+      console.log(result);
+      this.cartService.loadCartItem().subscribe(result=>
+        {
+          this.totalItem = result.cartItems.length;
+          console.log(this.totalItem);
+          console.log(result);
+          
+          
+        }
+      )
+      this.message = result;
+    });
     
-    return this.pd
-      .addToProduct(cart)
-      .subscribe((result) => {
-        console.log(result);
-        this.message=result;
-      })
   }
 }

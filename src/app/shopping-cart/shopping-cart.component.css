@@ -1,0 +1,50 @@
+#cartItem{
+    display: flex;
+    /* justify-content:space-between; */
+    align-items: center;
+}
+#aboutProduct{
+    width: 500px;
+    margin-left: 20px;
+    font-size: 14px;
+    font-weight: 300;
+}
+#quantityAdjuster{
+    width: 80px;
+    font-size: 14px;
+    font-weight: 300;
+}
+#quantityAdjuster button{
+    margin: 5px;
+    font-size: 14px;
+    font-weight: 300;
+}
+#price{
+    width:100px ;
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 300;
+}
+#buynow{
+    margin: auto;
+    font-size: 14px;
+    font-weight: 300;
+
+}
+#totalPrice{
+    display: flex;
+    font-size: 14px;
+    font-weight: 300;
+}
+#delete{
+    margin-left: 50px;
+    width: 50px;
+    font-size: 14px;
+    font-weight: 300;
+}
+#deleteText{
+    /* color: red; */
+    font-size: 14px;
+    font-weight: 50;
+}
