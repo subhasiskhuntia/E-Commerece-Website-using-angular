@@ -9,12 +9,12 @@ import { User } from './user';
 export class UserService {
   constructor(private http: HttpClient) {}
   userSignIn(user: User): Observable<string> {
-    return this.http.post('http://localhost:8081/api/user/signup', user, {
+    return this.http.post('http://localhost:8081/register', user, {
       responseType: 'text',
     });
   }
   userLogIn(user: User): Observable<string> {
-    return this.http.post('http://localhost:8081/api/user/login', user, {
+    return this.http.post('http://localhost:8081/authenticate', user, {
       responseType: 'text',
     });
   }
