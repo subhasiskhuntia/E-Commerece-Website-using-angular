@@ -10,7 +10,7 @@
     </div>
     <div id="details">
         <h2>
-            {{product.brand.name}}
+            {{product?.brand?.name}}
         </h2>
         <h4>
 
@@ -18,11 +18,11 @@
         </h4>
         <h2>
 
-            Rs. {{product.sizeAndQuantity[0]?.price}}
+            Rs. {{product?.sizeAndQuantity?.[0]?.price}}
         </h2>
         <div style="display: flex; flex-direction:column;justify-content: center;">
             <h4>
-                Size: {{product.sizeAndQuantity[0].size}}
+                Size: {{product?.sizeAndQuantity?.[0]?.size}}
                 <!-- <br> -->
             </h4>
             <div>

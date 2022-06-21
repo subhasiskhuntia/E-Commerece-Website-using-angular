@@ -9,8 +9,11 @@ import { ShoppingCart } from './shopping-cart';
 export class CartService {
   cart!: ShoppingCart;
   constructor(private http:HttpClient) { }
+
   loadCartItem():Observable<ShoppingCart>{
+    let userName=sessionStorage.getItem("userName");
+    
     console.log("inside load cart item");
-    return this.http.post<ShoppingCart>("http://localhost:8081/api/user/showCart",new ShoppingCart(0,[],Number(sessionStorage.getItem("userId"))))
+    return this.http.post<ShoppingCart>("http://localhost:8081/api/user/showCart",new ShoppingCart(0,[],userName))
   }
 }

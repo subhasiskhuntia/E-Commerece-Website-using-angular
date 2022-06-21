@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div id="cartContainer">
-    <div *ngFor="let item of cart.cartItems" id="cartItem">
+    <div *ngFor="let item of cart?.cartItems" id="cartItem">
         <img src="{{ item.cartProduct.images.image1 }}" alt="" width="100px" />
         <div id="aboutProduct">
             <div>{{ item.cartProduct.brand.name }}</div>

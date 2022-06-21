@@ -32,7 +32,7 @@ export class ProductDetailComponent implements OnInit {
     this.pd.loadProductDetails(this.id).subscribe(
       (result) => {
         this.product = result;
-        console.log(this.product);
+        // console.log(this.product);
       },
       (error) => console.log(error),
       () => console.log('completed')
@@ -40,10 +40,10 @@ export class ProductDetailComponent implements OnInit {
   }
   addToCart() {
     let cartItem: CartItem = new CartItem(0, 1, this.product);
-    let userId: number = Number(sessionStorage.getItem('userId'));
-    let cart: ShoppingCart = new ShoppingCart(0, [cartItem], userId);
+    let userName: string|null = sessionStorage.getItem('userName');
+    let cart: ShoppingCart = new ShoppingCart(0, [cartItem], userName);
     console.log(cart);
-    if (sessionStorage.getItem('userId') == null) {
+    if (sessionStorage.getItem('userName') == null) {
       console.log('Login First');
       this.router.navigate(['/login']);
     }
@@ -53,8 +53,8 @@ export class ProductDetailComponent implements OnInit {
       this.cartService.loadCartItem().subscribe(result=>
         {
           this.totalItem = result.cartItems.length;
-          console.log(this.totalItem);
-          console.log(result);
+          // console.log(this.totalItem);
+          // console.log(result);
           
           
         }

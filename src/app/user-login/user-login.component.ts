@@ -23,6 +23,10 @@ export class UserLoginComponent implements OnInit {
     this.userService.userLogIn(login).subscribe(
       (data) => {
         console.log(data, 'inside subscribe method');
+        let userName=JSON.parse(data).userName;
+        let token=JSON.parse(data).token
+        sessionStorage.setItem("userName",userName)
+        sessionStorage.setItem("token","Bearer "+token)
         if(data.startsWith("Welcome")){
           sessionStorage.setItem("userId",data[7]);
           console.log(data);

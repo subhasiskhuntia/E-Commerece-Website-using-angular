@@ -9,6 +9,6 @@ export class User {
     public phoneNumber: string,
     public address: string,
     public cart: ShoppingCart | null = null,
-    public role:string="role_user"
+    public role:string="ROLE_USER"
   ) {}
 }

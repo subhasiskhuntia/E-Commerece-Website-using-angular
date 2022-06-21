@@ -7,7 +7,7 @@ import { AdminComponent } from './admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminSigninComponent } from './admin-signin/admin-signin.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProductComponent } from './product/product.component';
 import { HeaderComponent } from './header/header.component';
 import { BannerComponent } from './banner/banner.component';
@@ -25,6 +25,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserSigninComponent } from './user-signin/user-signin.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { BasicAuthHtppInterceptorService } from './basic-auth-htpp-interceptor-service.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,11 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     BrowserModule,
     AppRoutingModule,FormsModule,ReactiveFormsModule,HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: BasicAuthHtppInterceptorService,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

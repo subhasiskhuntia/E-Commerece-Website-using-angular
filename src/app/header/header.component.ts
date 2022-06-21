@@ -9,12 +9,10 @@ import { CartService } from '../cart.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  loggedInOrNot: boolean = sessionStorage.getItem('userId') == null;
-  username: string | null = sessionStorage.getItem('username');
+  loggedInOrNot: boolean = sessionStorage.getItem('userName') == null;
+  username: string | null = sessionStorage.getItem('userName');
   @Input() cartItemNumber: number | null = null;
   constructor(private router: Router, private cartService: CartService) {
-    console.log(this.loggedInOrNot);
-    console.log(this.username);
   }
 
   ngOnInit(): void {
@@ -30,9 +28,6 @@ export class HeaderComponent implements OnInit {
   totalCartItem() {
     this.cartService.loadCartItem().subscribe((result) => {
       this.cartItemNumber = result.cartItems.length;
-      console.log(this.cartItemNumber);
-      console.log(result);
-      
       
     });
   }
