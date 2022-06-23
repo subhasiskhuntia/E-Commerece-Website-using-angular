@@ -22,17 +22,14 @@ export class UserLoginComponent implements OnInit {
     let login = new User('', '', username, password, '', '');
     this.userService.userLogIn(login).subscribe(
       (data) => {
-        console.log(data, 'inside subscribe method');
+        console.log(JSON.parse(data));
         let userName=JSON.parse(data).userName;
         let token=JSON.parse(data).token
+        let firstName=JSON.parse(data).firstName
         sessionStorage.setItem("userName",userName)
         sessionStorage.setItem("token","Bearer "+token)
-        if(data.startsWith("Welcome")){
-          sessionStorage.setItem("userId",data[7]);
-          console.log(data);
-          sessionStorage.setItem("username",data.slice(8,data.length));
-          // const lastNav=this.router.getLastSuccessfullNavigation();
-          // this.router.navigate(["/"])
+        sessionStorage.setItem("firstName",firstName);
+        if(firstName!=null){
           history.back();
         }
       },

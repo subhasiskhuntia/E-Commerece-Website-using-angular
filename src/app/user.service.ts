@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user';
@@ -17,5 +17,8 @@ export class UserService {
     return this.http.post('http://localhost:8081/authenticate', user, {
       responseType: 'text',
     });
+  }
+  refreshToken() {
+    return this.http.get('http://localhost:8081/refreshtoken');
   }
 }

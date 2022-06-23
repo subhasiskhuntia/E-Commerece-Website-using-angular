@@ -20,10 +20,10 @@ export class BasicAuthHtppInterceptorService implements HttpInterceptor {
       req = req.clone({
         headers: new HttpHeaders()
           .set('Authorization',token)
-      
+          .set("isRefreshToken","true")
       })
     }
-
+    
     return next.handle(req);
   }
 }

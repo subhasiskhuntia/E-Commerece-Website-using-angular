@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header [cartItemNumber]="totalItem"></app-header>
 <div id="cartContainer">
     <div *ngFor="let item of cart?.cartItems" id="cartItem">
         <img src="{{ item.cartProduct.images.image1 }}" alt="" width="100px" />
@@ -7,18 +7,18 @@
             <div>{{ item.cartProduct.name }}</div>
         </div>
         <div id="quantityAdjuster">
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
+            <button (click)="decreaseQuantity(item)">-</button>
+            <div class="quantity">{{item.quantity}}</div>
+            <button (click)="increaseQuantity(item)">+</button>
         </div>
-        <div id="price">Rs. {{ item.cartProduct.sizeAndQuantity[0].price }}</div>
+        <div id="price">Rs. {{item.quantity* item.cartProduct.sizeAndQuantity[0].price }}</div>
         <div id="delete">
-            <img src="https://img.myloview.com/stickers/delete-icon-thin-linear-delete-outline-icon-isolated-on-white-background-line-vector-delete-sign-symbol-for-web-and-mobile-700-254777605.jpg" alt="" height="40px">
+            <img src="https://img.myloview.com/stickers/delete-icon-thin-linear-delete-outline-icon-isolated-on-white-background-line-vector-delete-sign-symbol-for-web-and-mobile-700-254777605.jpg" alt="" height="40px" (click)="removeItem(item)">
         </div>
     </div>
     <div id="totalPrice">
         <div>Total:</div>
-        <div>XXX</div>
+        <div>{{totalPrice}}</div>
     </div>
     <div>
         <Button id="buynow">Buy Now</Button>

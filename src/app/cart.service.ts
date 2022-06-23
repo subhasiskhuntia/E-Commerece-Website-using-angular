@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CartItem } from './cart-item';
 import { ShoppingCart } from './shopping-cart';
 
 @Injectable({
@@ -15,5 +16,11 @@ export class CartService {
     
     console.log("inside load cart item");
     return this.http.post<ShoppingCart>("http://localhost:8081/api/user/showCart",new ShoppingCart(0,[],userName))
+  }
+  updateCart(cart:ShoppingCart):Observable<ShoppingCart>{
+    return this.http.post<ShoppingCart>("http://localhost:8081/api/user/updateCart",cart);
+  }
+  deleteCartItem(cart:ShoppingCart):Observable<ShoppingCart>{
+    return this.http.post<ShoppingCart>("http://localhost:8081/api/user/deleteCartItem",cart)
   }
 }

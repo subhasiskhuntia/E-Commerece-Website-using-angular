@@ -15,9 +15,14 @@
         </form>
         <a routerLink="/login" *ngIf="loggedInOrNot">Profile</a>
         <div routerLink="" *ngIf="!loggedInOrNot" style="margin-right: 15px;">
+            <div style="display: flex;">
 
-            <p  style="font-size: 15px;">
-                Welcome {{username}}</p>
+                <p  style="font-size: 15px; margin: 10px;">
+                    Welcome {{username}}</p>
+                    <p (click)="logout()" style="font: 15px; margin: 10px;">
+                        Logout
+                    </p>
+                </div>
         </div>
         <div routerLink="/cart" id="lastElement" style="width: 20px; display:flex ;">
             <img src="https://thumbs.dreamstime.com/b/shopping-cart-icon-trolley-icon-shopping-cart-icon-trolley-icon-vector-illustration-isolated-white-background-163727286.jpg" alt="" style="height: 50px;">
