@@ -175,4 +175,7 @@ export class ShoppingCartComponent implements OnInit {
       () => this.loadCartItems()
     );
   }
+  buyNow(){
+    this.userService.BuyTheProduct(this.totalPrice)
+  }
 }

@@ -94,4 +94,8 @@ export class ProductDetailComponent implements OnInit {
       this.message = result;
     });
   }
+  buyNow(){
+    
+    this.userService.BuyTheProduct(this.product.sizeAndQuantity[0].price)
+  }
 }
