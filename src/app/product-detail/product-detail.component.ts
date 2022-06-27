@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticatedResponse } from '../authenticated-response';
 import { CartItem } from '../cart-item';
 import { CartService } from '../cart.service';
+import { OrderDetails } from '../order-details';
+import { OrderItem } from '../order-item';
 import { Product } from '../product';
 import { ProductDetailService } from '../product-detail.service';
 import { ShoppingCart } from '../shopping-cart';
@@ -36,7 +38,7 @@ export class ProductDetailComponent implements OnInit {
     this.pd.loadProductDetails(this.id).subscribe(
       (result) => {
         console.log(result);
-        
+
         this.product = result;
         console.log(this.product);
       },
@@ -54,7 +56,7 @@ export class ProductDetailComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     console.log(cart);
-    
+
     this.pd.addToProduct(cart).subscribe((result) => {
       console.log(result);
       this.cartService.loadCartItem().subscribe(
@@ -94,8 +96,18 @@ export class ProductDetailComponent implements OnInit {
       this.message = result;
     });
   }
-  buyNow(){
-    
-    this.userService.BuyTheProduct(this.product.sizeAndQuantity[0].price)
+  buyNow() {
+    let orderDetails: OrderDetails = new OrderDetails(
+      0,
+      sessionStorage.getItem('userName') + '',
+      1,
+      this.product.sizeAndQuantity[0].price,
+      [new OrderItem(0, this.product, 1)]
+    );
+    console.log('hello');
+    this.userService.BuyTheProduct(
+      this.product.sizeAndQuantity[0].price,
+      orderDetails
+    );
   }
 }

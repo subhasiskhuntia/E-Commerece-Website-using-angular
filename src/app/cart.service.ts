@@ -23,4 +23,7 @@ export class CartService {
   deleteCartItem(cart:ShoppingCart):Observable<ShoppingCart>{
     return this.http.post<ShoppingCart>("http://localhost:8081/api/user/deleteCartItem",cart)
   }
+  deleteAllCartItem(cart:ShoppingCart):Observable<string>{
+    return this.http.post("http://localhost:8081/api/user/deleteAllCartItem",cart,{responseType:"text"})
+  }
 }

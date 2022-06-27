@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthenticatedResponse } from '../authenticated-response';
 import { CartItem } from '../cart-item';
 import { CartService } from '../cart.service';
+import { OrderDetails } from '../order-details';
+import { OrderItem } from '../order-item';
 import { Product } from '../product';
 import { ShoppingCart } from '../shopping-cart';
 import { UserService } from '../user.service';
@@ -15,7 +17,7 @@ import { UserService } from '../user.service';
 })
 export class ShoppingCartComponent implements OnInit {
   totalItem!: number;
-  totalPrice: number=0;
+  totalPrice: number = 0;
   constructor(
     private cartService: CartService,
     private userService: UserService,
@@ -33,11 +35,13 @@ export class ShoppingCartComponent implements OnInit {
           // console.log(result);
           this.cart = result;
           console.log(this.cart);
-          this.totalItem=this.cart.cartItems.length;
-          this.totalPrice=0;
-          for(let i=0;i<this.cart.cartItems.length;i++){
-            
-            this.totalPrice =this.totalPrice + this.cart.cartItems[i].quantity * this.cart.cartItems[i].cartProduct.sizeAndQuantity[0].price;
+          this.totalItem = this.cart.cartItems.length;
+          this.totalPrice = 0;
+          for (let i = 0; i < this.cart.cartItems.length; i++) {
+            this.totalPrice =
+              this.totalPrice +
+              this.cart.cartItems[i].quantity *
+                this.cart.cartItems[i].cartProduct.sizeAndQuantity[0].price;
             console.log(this.totalPrice);
           }
         },
@@ -101,7 +105,7 @@ export class ShoppingCartComponent implements OnInit {
           }
         }
       },
-      ()=>this.loadCartItems()
+      () => this.loadCartItems()
     );
   }
   decreaseQuantity(item: CartItem) {
@@ -134,7 +138,7 @@ export class ShoppingCartComponent implements OnInit {
           }
         }
       },
-      ()=>this.loadCartItems()
+      () => this.loadCartItems()
     );
   }
 
@@ -145,7 +149,7 @@ export class ShoppingCartComponent implements OnInit {
     console.log(this.cart);
     let cart = new ShoppingCart(0, [item], '');
     this.cartService.deleteCartItem(cart).subscribe(
-      (result) =>{
+      (result) => {
         console.log(result);
       },
       (error) => {
@@ -175,7 +179,31 @@ export class ShoppingCartComponent implements OnInit {
       () => this.loadCartItems()
     );
   }
-  buyNow(){
-    this.userService.BuyTheProduct(this.totalPrice)
+  buyNow() {
+    let cart: ShoppingCart = this.cart;
+    console.log(cart);
+
+    let orderItem: OrderItem[] = [];
+    for (let i = 0; i < this.cart.cartItems.length; i++) {
+      let order: OrderItem = new OrderItem(
+        i,
+        this.cart?.cartItems?.[i]?.cartProduct,
+        this.cart?.cartItems?.[i]?.quantity
+      );
+      orderItem.push(order);
+    }
+    console.log(orderItem);
+
+    let orderDetails: OrderDetails = new OrderDetails(
+      0,
+      sessionStorage.getItem('userName') + '',
+      1,
+      this.totalPrice,
+      orderItem
+    );
+    this.userService.BuyTheProduct(this.totalPrice, orderDetails,cart);
+    // this.cartService
+    //   .deleteAllCartItem(cart)
+    //   .subscribe((result) => console.log(result));
   }
 }
