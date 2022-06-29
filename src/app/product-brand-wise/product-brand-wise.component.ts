@@ -14,7 +14,7 @@ export class ProductBrandWiseComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   userId: number | null = null;
-
+  inputValue:string="";
   ngOnInit(): void {
     this.loadProducts();
   }
@@ -36,6 +36,7 @@ export class ProductBrandWiseComponent implements OnInit {
         // console.log(result);
         
         this.products = result;
+        this.inputValue=this.products[0].brand.name;
         sessionStorage.setItem("brand",this.products[0].brand.name);
       },
       (error) => console.log(error),

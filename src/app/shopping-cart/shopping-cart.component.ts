@@ -202,8 +202,6 @@ export class ShoppingCartComponent implements OnInit {
       orderItem
     );
     this.userService.BuyTheProduct(this.totalPrice, orderDetails,cart);
-    // this.cartService
-    //   .deleteAllCartItem(cart)
-    //   .subscribe((result) => console.log(result));
+    
   }
 }

@@ -1,9 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { FilterService } from '../filter.service';
 import { FilteringVariable } from '../filtering-variable';
+import { GenderWiseProductService } from '../gender-wise-product.service';
 import { Product } from '../product';
 import { ProductCategoryService } from '../product-category.service';
 
@@ -25,42 +26,28 @@ export class FilterProductComponent implements OnInit {
   order: string = 'asc';
   @Output() event = new EventEmitter<Product[]>();
   products: Product[] = [];
+  @Input() someInput: string="";
 
   constructor(
     private catService: ProductCategoryService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private filterService: FilterService
+    private filterService: FilterService,
+    private genderService:GenderWiseProductService
   ) {
-    this.route.data.subscribe((data) => {
-      this.categories = data['filteredData']['categoryList']
-        .substring(1, data['filteredData']['categoryList'].length - 1)
-        .split(', ');
-      this.brands = data['filteredData']['brandList']
-        .substring(1, data['filteredData']['brandList'].length - 1)
-        .split(', ');
-      this.colors = data['filteredData']['colorList']
-        .substring(1, data['filteredData']['colorList'].length - 1)
-        .split(', ');
-
-      // console.log(this.categories);
-      // console.log(this.brands);
-      // console.log(this.colors);
-
-      this.filterFormRef = this.formBuilder.group({
-        category: this.formBuilder.array(this.categories.map((x) => !1)),
-        brand: this.formBuilder.array(this.brands.map((x) => !1)),
-        gender: this.formBuilder.array([false, false, false, false]),
-        discount: this.formBuilder.control(''),
-        maxPrice: this.formBuilder.control(''),
-        minPrice: this.formBuilder.control(''),
-        color: this.formBuilder.array(this.colors.map((x) => !1)),
-        order: this.formBuilder.control(''),
-      });
-    });
+    this.loadForm();
+    // console.log('constructor called');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadForm();
+    // console.log('ngonit called');
+  }
+  ngOnChanges() {
+    console.log(this.someInput);
+    this.loadForm();
+    //  console.log(this.filterFormRef.value);
+    }  
   filterSubmit() {
     let formValue = this.filterFormRef.value;
     let categories = this.convertToValue('category', this.categories);
@@ -73,7 +60,7 @@ export class FilterProductComponent implements OnInit {
     let maxPrice = 100000;
     let searchedItem = '';
 
-    // console.log(formValue);
+    console.log(formValue);
     // console.log(formValue.maxPrice == null);
 
     if (categories.length == 0) {
@@ -100,19 +87,19 @@ export class FilterProductComponent implements OnInit {
         gender = this.gender;
       }
     }
-    if (formValue.minPrice==null || formValue.minPrice.length == 0 ) {
-      formValue.minPrice=0;
+    if (formValue.minPrice == null || formValue.minPrice.length == 0) {
+      formValue.minPrice = 0;
       minPrice = 0;
     }
-    if (formValue.maxPrice==null || formValue.maxPrice.length == 0) {
-      formValue.maxPrice=100000;
+    if (formValue.maxPrice == null || formValue.maxPrice.length == 0) {
+      formValue.maxPrice = 100000;
       maxPrice = 100000;
     }
     if (formValue.order == 'desc') {
       order = 'desc';
     }
-    if (formValue.discount==null || formValue.discount.length == 0) {
-      formValue.discount=100;
+    if (formValue.discount == null || formValue.discount.length == 0) {
+      formValue.discount = 100;
       discount = 100;
     }
     if (formValue.minPrice.length != 0) {
@@ -170,5 +157,54 @@ export class FilterProductComponent implements OnInit {
       }
     }
     return selectedItem;
+  }
+  loadForm(){
+    this.route.data.subscribe((data) => {
+      this.categories = data['filteredData']['categoryList']
+        .substring(1, data['filteredData']['categoryList'].length - 1)
+        .split(', ');
+      this.brands = data['filteredData']['brandList']
+        .substring(1, data['filteredData']['brandList'].length - 1)
+        .split(', ');
+      this.colors = data['filteredData']['colorList']
+        .substring(1, data['filteredData']['colorList'].length - 1)
+        .split(', ');
+
+      // console.log(this.categories);
+      // console.log(this.brands);
+      // console.log(this.colors);
+
+      this.filterFormRef = this.formBuilder.group({
+        category: this.formBuilder.array(
+          this.categories.map((x) => {
+            if (x == sessionStorage.getItem('category')) {
+              return 1;
+            }
+            return !1;
+          })
+        ),
+        brand: this.formBuilder.array(
+          this.brands.map((x) => {
+            if (x == sessionStorage.getItem('brand')) {
+              return 1;
+            }
+            return !1;
+          })
+        ),
+        gender: this.formBuilder.array(
+          this.gender.map((x) => {
+            if (x == sessionStorage.getItem('gender')) {
+              return 1;
+            }
+            return !1;
+          })
+        ),
+        discount: this.formBuilder.control(''),
+        maxPrice: this.formBuilder.control(''),
+        minPrice: this.formBuilder.control(''),
+        color: this.formBuilder.array(this.colors.map((x) => !1)),
+        order: this.formBuilder.control(''),
+      });
+    });
   }
 }

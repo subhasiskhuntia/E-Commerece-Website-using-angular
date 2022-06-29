@@ -10,6 +10,7 @@ import { Product } from '../product';
 })
 export class GenderWiseProductComponent implements OnInit {
   genderId: number = 2;
+  inputValue:string="";
   constructor(
     private route: ActivatedRoute,
     private genderService: GenderWiseProductService
@@ -18,6 +19,7 @@ export class GenderWiseProductComponent implements OnInit {
       (params) => {
         this.genderId = Number(params['id']);
         this.loadProducts();
+        // this.inputValue=this.genderId+"";
       },
       (error) => console.log(error),
       () => {
@@ -43,6 +45,8 @@ export class GenderWiseProductComponent implements OnInit {
     this.genderService.loadProductGenderWise(this.genderId).subscribe(
       (result) => {
         (this.products = result),
+        // console.log(this.products);
+        this.inputValue=this.products[0].gender.gender;
         sessionStorage.setItem("gender",this.products[0].gender.gender);
       },
       (error) => console.log(error),

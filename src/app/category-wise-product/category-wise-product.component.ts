@@ -10,6 +10,7 @@ import { Product } from '../product';
 })
 export class CategoryWiseProductComponent implements OnInit {
   id: number = Number(this.route.snapshot.paramMap.get('id'));
+  inputValue:string="category";
   constructor(
     private cwps: CategoryWiseProductsService,
     private route: ActivatedRoute
@@ -31,6 +32,7 @@ export class CategoryWiseProductComponent implements OnInit {
     this.cwps.loadproducts(this.id).subscribe((result) => {
       this.products = result;
       // console.log(this.products);
+      this.inputValue=this.products[0].category.type;
       sessionStorage.setItem("category",this.products[0].category.type);
     });
   }
