@@ -1,31 +1,62 @@
 <app-header></app-header>
-<div id="signinContainer">
+<div style="padding-top: 100px;"></div>
+<div class="container right-panel-active" id="container">
+	<div class="form-container sign-up-container">
+		<form [formGroup]="formSignIn" (ngSubmit)="submitAdmin()">
+			<h1>Create Account</h1>
+			<mat-form-field>
+				
+				<input type="text" placeholder="First Name" name="firstName"required formControlName="firstName" matInput/>
+			</mat-form-field>
+            <mat-form-field>
 
-    <form method="post" [formGroup]="formSignIn" method="post" (ngSubmit)="submitAdmin()">
-        <H2>SignIn Here</H2>
-        <br>
-    <label for="firstName">First Name <span *ngIf="formSignIn.controls['firstName'].invalid && (formSignIn.controls['firstName'].dirty || formSignIn.controls['firstName'].touched)" style="color: red;">*</span></label>
+				<input type="text" placeholder="Last Name" name="lastName" required formControlName="lastName"  matInput/>
+			</mat-form-field>
+			<mat-form-field>
 
-    <input type="text" name="firstName" id="firstName" formControlName="firstName">
-    
-    <label for="lastName">Last Name<span *ngIf="formSignIn.controls['lastName'].invalid && (formSignIn.controls['lastName'].dirty || formSignIn.controls['lastName'].touched)" style="color: red;">*</span></label>
-    <input type="text" name="lastName" id="lastName" formControlName="lastName">
-    
-    <label for="email">Username<span *ngIf="formSignIn.controls['email'].invalid && (formSignIn.controls['email'].dirty || formSignIn.controls['email'].touched)" style="color: red;">*</span></label>
-    
-    <input type="email" name="email" id="email" formControlName="email">
-    
-    <label for="password">password<span *ngIf="formSignIn.controls['password'].invalid && (formSignIn.controls['password'].dirty || formSignIn.controls['password'].touched)" style="color: red;">*</span></label>
-    <input type="password" name="password" id="password" formControlName="password">
-    <div id="passwordMessage" *ngIf="formSignIn.controls['password'].errors?.['pattern']" style="color: red; font-size:11px ;">Password Must be at least 5 character long and contains one special character, one capital and one small letter</div>
-    
-    <label for="phone number">Phone<span *ngIf="formSignIn.controls['phone'].invalid && (formSignIn.controls['phone'].dirty || formSignIn.controls['phone'].touched)" style="color: red;">*</span></label>
-    <input type="text" name="phone" id="phone" formControlName="phone">
-    
-    <label for="address">Address<span *ngIf="formSignIn.controls['address'].invalid && (formSignIn.controls['address'].dirty || formSignIn.controls['address'].touched)" style="color: red;">*</span></label>
-    <input type="text" name="address" id="address" formControlName="address">
-    <br>
-    <br>
-    <input type="submit" value="Submit" id="submit" [disabled]="formSignIn.invalid">
-</form>
+				<input type="email" placeholder="Email" name="username" required formControlName="email" matInput/>
+			</mat-form-field>
+			<mat-form-field>
+
+				<input type="password" placeholder="Password" name="password" required formControlName="password" matInput/>
+			</mat-form-field>
+            <mat-form-field>
+
+				<input type="text" placeholder="Address" name="address" required formControlName="address" matInput/>
+			</mat-form-field>
+            <mat-form-field>
+
+				<input type="text" placeholder="Ph number" name="phoneNumber" required formControlName="phone" matInput/>
+			</mat-form-field>
+			<button [disabled]="formSignIn.invalid" id="signup">Sign Up</button>
+            <div class="mobi">
+            <p>Sign In if you already have acount</p>
+            <button routerLink="/login">Sign In</button>
+        </div>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="#">
+			<h1>Sign in</h1>
+			
+			<input type="email" placeholder="Email" />
+			<input type="password" placeholder="Password" />
+			<a href="#">Forgot your password?</a>
+			<button>Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" routerLink="/login">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
 </div>

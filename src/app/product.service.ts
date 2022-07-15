@@ -21,4 +21,10 @@ export class ProductService {
   updateProduct(product:Product):Observable<string>{
     return this.http.put("http://localhost:8081/products/updateProduct",product,{responseType:"text"});
   }
+  getSalesInCategory():Observable<any>{
+    return this.http.get("http://localhost:8081/api/admin/salesInCategory")
+  }
+  getSalesInBrand():Observable<any>{
+    return this.http.get("http://localhost:8081/api/admin/salesInBrand")
+  }
 }

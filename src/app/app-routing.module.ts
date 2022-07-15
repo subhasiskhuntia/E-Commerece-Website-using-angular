@@ -7,6 +7,8 @@ import { AddBrandComponent } from './admin/add-brand/add-brand.component';
 import { AddCategoryComponent } from './admin/add-category/add-category.component';
 import { AddProductComponent } from './admin/add-product/add-product.component';
 import { AdminComponent } from './admin/admin.component';
+import { BrandSaleChartComponent } from './admin/brand-sale-chart/brand-sale-chart.component';
+import { ChartComponent } from './admin/chart/chart.component';
 import { EditBannerComponent } from './admin/edit-banner/edit-banner.component';
 import { EditBrandComponent } from './admin/edit-brand/edit-brand.component';
 import { EditCategoryComponent } from './admin/edit-category/edit-category.component';
@@ -22,6 +24,7 @@ import { FilterRouteResolver } from './resolvers/filter.resolver';
 import { RouteResolver } from './resolvers/route.resolver';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { UserLoginComponent } from './user-login/user-login.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserSigninComponent } from './user-signin/user-signin.component';
 
 const routes: Routes = [
@@ -38,6 +41,8 @@ const routes: Routes = [
       { path: 'editBanner', component: EditBannerComponent },
       { path: 'addBrand', component: AddBrandComponent },
       { path: 'editBrand', component: EditBrandComponent },
+      {path:"chart",component:ChartComponent},
+      {path:"brandSale",component:BrandSaleChartComponent}
     ],
   },
   { path: 'admin/login', component: AdminLoginComponent },
@@ -81,6 +86,10 @@ const routes: Routes = [
     path: 'orderDetails',
     component: OrderDetailsComponent,
   },
+  {
+    path:"userProfile",
+    component:UserProfileComponent
+  }
 ];
 
 @NgModule({

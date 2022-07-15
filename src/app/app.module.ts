@@ -52,6 +52,9 @@ import { EditBrandComponent } from './admin/edit-brand/edit-brand.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { AdminNavigationBarComponent } from './admin/admin-navigation-bar/admin-navigation-bar.component';
 import { AdminDashBoardComponent } from './admin/admin-dash-board/admin-dash-board.component';
+import { ChartComponent } from './admin/chart/chart.component';
+import { BrandSaleChartComponent } from './admin/brand-sale-chart/brand-sale-chart.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +90,9 @@ import { AdminDashBoardComponent } from './admin/admin-dash-board/admin-dash-boa
     SidebarComponent,
     AdminNavigationBarComponent,
     AdminDashBoardComponent,
+    ChartComponent,
+    BrandSaleChartComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

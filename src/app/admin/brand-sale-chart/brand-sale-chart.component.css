@@ -1,0 +1,13 @@
+#divChart{
+    display: block;
+    width:800px;
+    height: 800px;
+
+}
+#chartContainer{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

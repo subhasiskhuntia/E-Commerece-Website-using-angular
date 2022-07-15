@@ -9,6 +9,7 @@ export class User {
     public phoneNumber: string,
     public address: string,
     public cart: ShoppingCart | null = null,
-    public role:string="ROLE_USER"
+    public role:string="ROLE_USER",
+    public id:number=0
   ) {}
 }
