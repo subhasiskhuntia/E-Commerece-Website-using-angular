@@ -1,0 +1,6 @@
+<mat-form-field>
+    <mat-label>Image url</mat-label>
+    <input type="text" name="image" id="image" [(ngModel)]="image" matInput>
+</mat-form-field>
+<br>
+<button mat-raised-button [disabled]="image==''" (click)="submitBanner()">Submit</button>

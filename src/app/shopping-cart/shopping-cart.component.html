@@ -1,4 +1,15 @@
 <app-header [cartItemNumber]="totalItem"></app-header>
+<div class="chooseOption" style="margin: auto" *ngIf="!loggedInOrNot">
+    <a routerLink="/orderDetails">
+      <button
+        mat-raised-button
+        style="width: 100%; padding: 10px; margin-bottom: 10px"
+        (click)="showOrders()"
+      >
+        Show my Orders
+      </button>
+    </a>
+  </div>
 <div id="cartContainer">
     <div *ngFor="let item of cart?.cartItems" id="cartItem">
         <img src="{{ item.cartProduct.images.image1 }}" alt="" width="100px" />
@@ -7,9 +18,9 @@
             <div>{{ item.cartProduct.name }}</div>
         </div>
         <div id="quantityAdjuster">
-            <button (click)="decreaseQuantity(item)">-</button>
+            <button class="btn btn-secondary" (click)="decreaseQuantity(item)">-</button>
             <div class="quantity">{{item.quantity}}</div>
-            <button (click)="increaseQuantity(item)">+</button>
+            <button class="btn btn-secondary" (click)="increaseQuantity(item)">+</button>
         </div>
         <div id="price">Rs. {{item.quantity* item.cartProduct.sizeAndQuantity[0].price }}</div>
         <div id="delete">
@@ -21,6 +32,7 @@
         <div>{{totalPrice}}</div>
     </div>
     <div>
-        <Button id="buynow" (click)="buyNow()">Buy Now</Button>
+        <button mat-raised-button (click)="buyNow()">Buy Now</button>
+        
     </div>
 </div>

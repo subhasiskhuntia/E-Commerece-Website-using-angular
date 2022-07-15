@@ -18,4 +18,13 @@ export class ProductCategoryService {
   distinctCategory():Observable<string>{
     return this.http.get("http://localhost:8081/api/category/getDistinctCategory", { responseType: "text" });
   }
+  loadDistinctCategory():Observable<string[]>{
+    return this.http.get<string[]>("http://localhost:8081/api/category/loadDistinctCategory")
+  }
+  updateCategory(category:Category):Observable<string>{
+    return this.http.post("http://localhost:8081/api/category/updateCategory",category,{responseType:"text"});
+  }
+  deleteCategory(id:number):Observable<string>{
+    return this.http.delete("http://localhost:8081/api/category/deleteCategory/"+id,{responseType:"text"})
+  }
 }

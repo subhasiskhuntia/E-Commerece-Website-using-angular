@@ -6,6 +6,7 @@ export class OrderDetails {
         public username:string,
         public paymentId:number,
         public totalPrice:number,
-        public orderItem:OrderItem[]
+        public orderItem:OrderItem[],
+        public createdAt:Date=new Date()
     ){}
 }

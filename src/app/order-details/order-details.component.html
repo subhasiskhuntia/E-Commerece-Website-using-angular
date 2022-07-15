@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row heading">
+        <span class="col-sm headings">Payment Id</span>
+        <span class="col-sm headings">Total Price</span>
+        <span class="col-sm headings">Order Date</span>
+    </div>
+    <hr>
+    <div *ngFor="let order of orderDetails" class="row">
+        <div class="orderDetails">
+           <span class="col-sm details">{{order.paymentId}}</span>
+           <span class="col-sm details"> {{order.totalPrice}}</span>
+           <span class="col-sm details"> {{order.createdAt |date:'MMM d, y, h:mm:ss a'}}</span>
+        </div>
+        <div class="col-sm-12 products">
+
+            <div *ngFor="let product of order.orderItem " style="display: flex; margin: 5px;">
+                <img src="{{product.product.images.image1}}" alt=" " style="max-width: 60px ;border-radius:100%;" routerLink="/product/details/{{product.product.id}}">
+                <span class="badge text-bg-secondary" style="height:20px">{{product.quantity}}</span>
+            </div>
+        </div>
+    </div>
+</div>

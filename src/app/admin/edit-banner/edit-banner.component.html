@@ -1,0 +1,19 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Image</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let banner of banners">
+        <td>{{banner.id}}</td>
+        <td><img src={{banner.url}} alt="" style="max-height: 150px;"></td>
+        <td>
+            <mat-icon (click)="deleteBanner(banner.id)">delete</mat-icon>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>

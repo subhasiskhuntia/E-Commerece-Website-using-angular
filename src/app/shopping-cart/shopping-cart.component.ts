@@ -18,6 +18,7 @@ import { UserService } from '../user.service';
 export class ShoppingCartComponent implements OnInit {
   totalItem!: number;
   totalPrice: number = 0;
+  loggedInOrNot:boolean=sessionStorage.getItem("userName")==null;
   constructor(
     private cartService: CartService,
     private userService: UserService,
@@ -203,5 +204,8 @@ export class ShoppingCartComponent implements OnInit {
     );
     this.userService.BuyTheProduct(this.totalPrice, orderDetails,cart);
     
+  }
+  showOrders(){
+    this.router.navigate(["/orderDetails"])
   }
 }

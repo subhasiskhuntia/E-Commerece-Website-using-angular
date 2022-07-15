@@ -1,0 +1,31 @@
+.products{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0 20px 0;
+}
+.order{
+    display: flex;
+    flex-direction: column;
+}
+.orderDetails{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+.details{
+    margin:0 25px 0 25px;
+    font-size: larger;
+}
+.headings{
+    font-size: x-large;
+    font-weight: 400;
+}
+.col-sm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.heading{
+    margin-bottom: 30px;
+}

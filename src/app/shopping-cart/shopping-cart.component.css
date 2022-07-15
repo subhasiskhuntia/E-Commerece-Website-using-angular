@@ -56,3 +56,11 @@
     justify-content: center;
     align-items: center;
 }
+.chooseOption{
+    max-width: 200px;
+    position: absolute !important;
+    right: 10px;
+}
+#cartContainer{
+    margin-top: 50px;
+}

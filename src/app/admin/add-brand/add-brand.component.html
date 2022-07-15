@@ -1,0 +1,22 @@
+<div>
+    <form #brandRef="ngForm" (ngSubmit)="saveBrand(brandRef)">
+
+        <mat-form-field>
+            <mat-label>Brand Name</mat-label>
+            <input type="text" name="name" id="name" [(ngModel)]="typedBrand" matInput required ngModel (input)="showSuggestedBrands()" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let brand of suggestedBrands" [value]="brand">
+                    {{ brand }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Image</mat-label>
+            <input type="text" name="image" id="image" ngModel matInput>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button [disabled]="brandRef.invalid">Submit</button>
+    </form>
+
+</div>

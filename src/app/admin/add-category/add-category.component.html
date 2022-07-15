@@ -1,0 +1,22 @@
+<div>
+    <form #categoryRef="ngForm" (ngSubmit)="saveCategory(categoryRef)">
+
+        <mat-form-field>
+            <mat-label>Category Name</mat-label>
+            <input type="text" name="name" id="name" [(ngModel)]="typedCategory" matInput required ngModel (input)="showSuggestedCategories()" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let category of suggestedCategories" [value]="category">
+                    {{ category }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Image</mat-label>
+            <input type="text" name="image" id="image" ngModel matInput>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button [disabled]="categoryRef.invalid">Submit</button>
+    </form>
+
+</div>

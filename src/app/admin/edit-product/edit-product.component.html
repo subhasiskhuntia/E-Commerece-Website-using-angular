@@ -1,0 +1,67 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <!-- <th scope="col">name</th>
+        <th scope="col">description</th> -->
+      <th scope="col">image</th>
+      <!-- <th scope="col">color</th> -->
+      <th scope="col">sku</th>
+      <th scope="col">gender</th>
+      <th scope="col">category</th>
+      <th scope="col">brand</th>
+      <th scope="col">size</th>
+      <th scope="col">quantity</th>
+      <th scope="col">price</th>
+      <th scope="col">Edit</th>
+      <th scope="col">delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.id }}</td>
+      <!-- <td>{{product.name}}</td>
+        <td>{{product.description}}</td> -->
+      <td>
+        <a routerLink="/product/details/{{product.id}}">
+          <img src="{{ product.images.image1 }}" alt="" style="max-width: 50px" />
+        </a> 
+      </td>
+      <!-- <td>{{ product.color }}</td> -->
+      <td>{{ product.sku }}</td>
+      <td>{{ product.gender.gender }}</td>
+      <td>{{ product.category.type }}</td>
+      <td>{{ product.brand.name }}</td>
+      <td>
+        <input type="text" name="size" id="size" [value]="product.sizeAndQuantity[0]?.size" *ngIf="selectedProduct==product.id" [(ngModel)]="size">
+        <span *ngIf="selectedProduct!=product.id">
+
+          {{ product.sizeAndQuantity[0]?.size }}
+        </span>
+      </td>
+      <td>
+        <input type="text" name="quantity" id="quantity" [value]="product.sizeAndQuantity[0]?.quantity" *ngIf="selectedProduct==product.id" [(ngModel)]="quantity">
+        <span *ngIf="selectedProduct!=product.id">
+
+          {{ product.sizeAndQuantity[0]?.quantity }}
+        </span>
+      </td>
+      <td>
+        <input type="text" name="size" id="size" [value]="product.sizeAndQuantity[0]?.price" *ngIf="selectedProduct==product.id" [(ngModel)]="price">
+        <span *ngIf="selectedProduct!=product.id">
+
+          {{ product.sizeAndQuantity[0]?.price }}
+        </span>
+      </td>
+      <td>
+        <button mat-raised-button (click)="editProduct(product.id,product)" *ngIf="selectedProduct!=product.id">edit</button>
+        <button mat-raised-button (click)="submitProduct(product)" *ngIf="selectedProduct==product.id">Submit</button>
+      </td>
+      <td>
+        <!-- <button mat-fab color="warn" aria-label="Example icon button with a delete icon" style="max-height: 50px;"> -->
+        <mat-icon (click)="deleteProduct(product.id)">delete</mat-icon>
+        <!-- </button> -->
+      </td>
+    </tr>
+  </tbody>
+</table>

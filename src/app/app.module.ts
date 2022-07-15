@@ -1,5 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatInputModule} from "@angular/material/input";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatAutocompleteModule} from "@angular/material/autocomplete"
+import {MatIconModule} from "@angular/material/icon"
+import {MatButtonModule} from "@angular/material/button";
+import {MatSelectModule} from "@angular/material/select";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle"
+import {MatDatepickerModule} from "@angular/material/datepicker"
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule, MatCardTitle} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +38,20 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { UserSigninComponent } from './user-signin/user-signin.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { BasicAuthHtppInterceptorService } from './basic-auth-htpp-interceptor-service.service';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddProductComponent } from './admin/add-product/add-product.component';
+import { EditProductComponent } from './admin/edit-product/edit-product.component';
+import { EditBannerComponent } from './admin/edit-banner/edit-banner.component';
+import { AddBannerComponent } from './admin/add-banner/add-banner.component';
+import { AddCategoryComponent } from './admin/add-category/add-category.component';
+import { EditCategoryComponent } from './admin/edit-category/edit-category.component';
+import { AddBrandComponent } from './admin/add-brand/add-brand.component';
+import { EditBrandComponent } from './admin/edit-brand/edit-brand.component';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { AdminNavigationBarComponent } from './admin/admin-navigation-bar/admin-navigation-bar.component';
+import { AdminDashBoardComponent } from './admin/admin-dash-board/admin-dash-board.component';
 
 @NgModule({
   declarations: [
@@ -48,17 +74,48 @@ import { BasicAuthHtppInterceptorService } from './basic-auth-htpp-interceptor-s
     ProductPageComponent,
     UserLoginComponent,
     UserSigninComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    OrderDetailsComponent,
+    AddProductComponent,
+    EditProductComponent,
+    EditBannerComponent,
+    AddBannerComponent,
+    AddCategoryComponent,
+    EditCategoryComponent,
+    AddBrandComponent,
+    EditBrandComponent,
+    SidebarComponent,
+    AdminNavigationBarComponent,
+    AdminDashBoardComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,FormsModule,ReactiveFormsModule,HttpClientModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatCardModule,
+    MatListModule,
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: BasicAuthHtppInterceptorService,
-    multi: true,
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BasicAuthHtppInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

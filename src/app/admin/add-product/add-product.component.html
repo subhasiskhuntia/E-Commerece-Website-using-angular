@@ -1,0 +1,100 @@
+<div class="container">
+  <h2 style="text-align: center;">Enter Product Details</h2>
+  <form [formGroup]="productRef" (ngSubmit)="storeProduct()">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input type="text" name="name" id="name" formControlName="name" matInput required />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label> Description </mat-label>
+
+      <input type="text" name="description" id="description" formControlName="description" matInput />
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Size</mat-label>
+      <input type="text" name="size" id="size" matInput formControlName="size">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Gender</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="male">Male</mat-option>
+        <mat-option value="female">Female</mat-option>
+        <mat-option value="kid">Kid</mat-option>
+        <mat-option value="baby">Baby</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Sku</mat-label>
+      <input type="text" name="sku" id="sku" matInput formControlName="sku" />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Color</mat-label>
+      <input type="text" name="color" id="color" formControlName="color" matInput />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Price</mat-label>
+      <input type="number" matInput name="price" id="price" formControlName="price" required />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Quantity</mat-label>
+      <input type="number" matInput name="quantity" id="quantity" formControlName="quantity" required />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label for="image">Image</mat-label>
+      <input type="text" name="image" id="image" formControlName="image1" matInput required />
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label for="image">Image</mat-label>
+      <input type="text" name="image" id="image" formControlName="image2" matInput />
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label for="image">Image</mat-label>
+      <input type="text" name="image" id="image" formControlName="image3" matInput />
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label for="image">Image</mat-label>
+      <input type="text" name="image" id="image" formControlName="image4" matInput />
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label for="image">Image</mat-label>
+      <input type="text" name="image" id="image" formControlName="image5" matInput />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label for="category">Category</mat-label>
+      <input matInput aria-label="Category" type="text" name="category" id="category" formControlName="category"
+        [(ngModel)]="typedCategory" (input)="showSuggestedCategories()" [matAutocomplete]="auto" required />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let category of suggestedCategory" [value]="category">
+          {{ category }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label for="brand">Brand</mat-label>
+      <input type="text" name="brand" id="brand" formControlName="brand" matInput [(ngModel)]="typedBrand"
+        (input)="showSuggestedBrands()" [matAutocomplete]="autoBrand" required />
+      <mat-autocomplete #autoBrand="matAutocomplete">
+        <mat-option *ngFor="let brand of suggestedBrands" [value]="brand">
+          {{ brand }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br />
+
+    <button [disabled]="productRef.invalid" mat-raised-button style="width: 100%;">Submit</button>
+  </form>
+</div>

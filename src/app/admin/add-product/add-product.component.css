@@ -1,0 +1,25 @@
+.container{
+    max-width: 500px;
+    margin: auto;
+}
+input{
+    width: 100%;
+}
+.mat-form-field{
+    width: 100%;
+}
+.csvContainer,.progress,.alert-secondary{
+    max-width: 500px;
+    margin: auto;
+}
+.csvInput{
+    max-width: 500px;
+}
+.csvInputAndLabel,.csvInputAndLabel label{
+    width:100% ;
+}
+.chooseOption{
+    max-width: 200px;
+    position: absolute !important;
+    right: 10px;
+}

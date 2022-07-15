@@ -1,0 +1,31 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Edit</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <td>{{category.id}}</td>
+        <td> 
+            <img src={{category.url}} alt=" " style="max-width: 70px;">
+            <br>
+            <input type="text" matInput [(ngModel)]="image" *ngIf="selectedCategory==category.id">
+        </td>
+        <td>
+            {{category.type}}
+        </td>
+        <td>
+            <button mat-raised-button (click)="editCategory(category.id,category)" *ngIf="selectedCategory!=category.id">Edit</button>
+            <button mat-raised-button *ngIf="selectedCategory==category.id" (click)="updateCategory(category)">Submit</button>
+        </td>
+        <td>
+            <mat-icon (click)="deleteCategory(category.id)">delete</mat-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
