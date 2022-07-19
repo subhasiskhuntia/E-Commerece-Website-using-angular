@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Category } from 'src/app/category;';
 import { ProductCategoryService } from 'src/app/product-category.service';
 
@@ -12,9 +13,12 @@ export class AddCategoryComponent implements OnInit {
   categories:string[]=[];
   suggestedCategories:string[]=[];
   typedCategory:string="";
-  constructor(private categoryService:ProductCategoryService) { }
+  constructor(private categoryService:ProductCategoryService,private router:Router) { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("role")!="ROLE_ADMIN"){
+      this.router.navigate(["/admin/adminHome"])
+    }
     this.loadCategories();
   }
   saveCategory(categoryRef:NgForm){

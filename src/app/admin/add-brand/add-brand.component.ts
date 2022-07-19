@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Brand } from 'src/app/brand;';
 import { ProductBrandService } from 'src/app/product-brand.service';
 
@@ -12,9 +13,12 @@ export class AddBrandComponent implements OnInit {
   typedBrand: string = '';
   brands: string[] = [];
   suggestedBrands: string[] = [];
-  constructor(private brandService: ProductBrandService) {}
+  constructor(private brandService: ProductBrandService,private router:Router) {}
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("role")!="ROLE_ADMIN"){
+      this.router.navigate(["/admin/adminHome"])
+    }
     this.loadAllBrands();
   }
   saveBrand(brandRef: NgForm) {

@@ -2,7 +2,7 @@
 <div style="padding-top: 100px;"></div>
 <div class="container right-panel-active" id="container">
 	<div class="form-container sign-up-container">
-		<form [formGroup]="formSignIn" (ngSubmit)="submitAdmin()">
+		<form [formGroup]="formSignIn">
 			<h1>Create Account</h1>
 			<mat-form-field>
 				
@@ -28,7 +28,7 @@
 
 				<input type="text" placeholder="Ph number" name="phoneNumber" required formControlName="phone" matInput/>
 			</mat-form-field>
-			<button [disabled]="formSignIn.invalid" id="signup">Sign Up</button>
+			<button [disabled]="formSignIn.invalid" id="signup" data-toggle="modal" data-target="#exampleModalCenter" (click)="sendOtp()">Sign Up</button>
             <div class="mobi">
             <p>Sign In if you already have acount</p>
             <button routerLink="/login">Sign In</button>
@@ -60,3 +60,29 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLongTitle">Enter OTP</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <label for="otp" style="margin-right: 10px;" >Enter 5 digit otp </label>
+         <input type="text" [(ngModel)]="otp">
+         <br>
+         <!-- <br>
+         <label for="fname" style="margin-right: 10px;">Enter new password  </label>
+         <input type="password" >
+        </div> -->
+		<p>Time Remaining {{timeLeft}} sec</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeOtpSender">Close</button>
+          <button type="button" class="btn btn-primary" (click)="checkOtp()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

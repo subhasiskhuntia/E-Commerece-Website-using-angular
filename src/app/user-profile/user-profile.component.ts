@@ -46,6 +46,8 @@ export class UserProfileComponent implements OnInit {
   logout() {
     sessionStorage.removeItem('userName');
     sessionStorage.removeItem("token");
+    sessionStorage.removeItem("role");
+    sessionStorage.removeItem("firstName");
     let currentUrl = this.router.url;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';

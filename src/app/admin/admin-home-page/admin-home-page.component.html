@@ -1,0 +1,10 @@
+<div *ngIf="admin">
+    Welcome Admin
+</div>
+<div *ngIf="!admin">
+    <p>
+        You are not Admin
+    </p>
+    <br>
+    <a routerLink="/login">Login</a>
+</div>

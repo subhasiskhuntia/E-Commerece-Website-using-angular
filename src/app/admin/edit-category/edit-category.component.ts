@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Category } from 'src/app/category;';
 import { ProductCategoryService } from 'src/app/product-category.service';
 
@@ -12,9 +13,12 @@ export class EditCategoryComponent implements OnInit {
   image: string = '';
   name: string = '';
   selectedCategory: number = -1;
-  constructor(private categoryService: ProductCategoryService) {}
+  constructor(private categoryService: ProductCategoryService,private router:Router) {}
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("role")!="ROLE_ADMIN"){
+      this.router.navigate(["/admin/adminHome"])
+    }
     this.loadCategory();
   }
   loadCategory() {

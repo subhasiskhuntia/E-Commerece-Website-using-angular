@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Brand } from 'src/app/brand;';
 import { Category } from 'src/app/category;';
 import { Discount } from 'src/app/discount;';
@@ -27,10 +28,14 @@ export class AddProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private productBrandService: ProductBrandService,
-    private productCategoryService: ProductCategoryService
+    private productCategoryService: ProductCategoryService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("role")!="ROLE_ADMIN"){
+      this.router.navigate(["/admin/adminHome"])
+    }
     this.getDistinctCategory();
     this.getDistinctBrands();
   }

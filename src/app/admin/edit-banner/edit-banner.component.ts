@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Banner } from 'src/app/banner';
 import { BannerService } from 'src/app/banner.service';
 
@@ -9,9 +10,12 @@ import { BannerService } from 'src/app/banner.service';
 })
 export class EditBannerComponent implements OnInit {
   banners: Banner[] = [];
-  constructor(private bannerService: BannerService) {}
+  constructor(private bannerService: BannerService,private router:Router) {}
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("role")!="ROLE_ADMIN"){
+      this.router.navigate(["/admin/adminHome"])
+    }
     this.loadBanner();
   }
   loadBanner() {

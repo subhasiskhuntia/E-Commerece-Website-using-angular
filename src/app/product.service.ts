@@ -27,4 +27,7 @@ export class ProductService {
   getSalesInBrand():Observable<any>{
     return this.http.get("http://localhost:8081/api/admin/salesInBrand")
   }
+  sales(url:string):Observable<any>{
+    return this.http.get<any>(url);
+  }
 }

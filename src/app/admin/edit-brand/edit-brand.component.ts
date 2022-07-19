@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Brand } from 'src/app/brand;';
 import { ProductBrandService } from 'src/app/product-brand.service';
 
@@ -12,9 +13,12 @@ export class EditBrandComponent implements OnInit {
   image: string = '';
   name: string = '';
   selectedBrand: number = -1;
-  constructor(private brandService: ProductBrandService) {}
+  constructor(private brandService: ProductBrandService,private router:Router) {}
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("role")!="ROLE_ADMIN"){
+      this.router.navigate(["/admin/adminHome"])
+    }
     this.loadBrands();
   }
   loadBrands() {

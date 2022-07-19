@@ -18,6 +18,9 @@ export class ChartComponent implements OnInit {
   constructor(private router: Router, private productService: ProductService) {}
 
   ngOnInit() {
+    if(sessionStorage.getItem("role")!="ROLE_ADMIN"){
+      this.router.navigate(["/admin/adminHome"])
+    }
     // if (sessionStorage.getItem('admin') == 'true') {
       // this.ifLoggedIn = true;
       this.loadData();

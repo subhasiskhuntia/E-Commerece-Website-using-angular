@@ -26,9 +26,11 @@ export class UserLoginComponent implements OnInit {
         let userName=JSON.parse(data).userName;
         let token=JSON.parse(data).token
         let firstName=JSON.parse(data).firstName
+        let role=JSON.parse(data).role;
         sessionStorage.setItem("userName",userName)
         sessionStorage.setItem("token","Bearer "+token)
         sessionStorage.setItem("firstName",firstName);
+        sessionStorage.setItem("role",role);
         if(firstName!=null){
           history.back();
         }

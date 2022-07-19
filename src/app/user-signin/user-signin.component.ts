@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-signin.component.css'],
 })
 export class UserSigninComponent implements OnInit {
+  otp:string="";
   constructor(private http: HttpClient, private userService: UserService) {}
 
   ngOnInit(): void {}
@@ -42,9 +43,42 @@ export class UserSigninComponent implements OnInit {
     console.log(JSON.stringify(user));
 
     this.userService.userSignIn(user).subscribe(
-      (data) => console.log(data, 'inside subscribe method'),
+      (data) => alert(data),
       (error) => console.log(error),
       () => console.log('process completed')
     );
+  }
+  timeLeft:number=300;
+  interval:any;
+  sendOtp(){
+    this.timeLeft=300;
+    this.interval = setInterval(() => {
+      if(this.timeLeft > 0) {
+        this.timeLeft--;
+      } else {
+        clearInterval(this.interval);
+        this.timeLeft=300;
+        document.getElementById("closeOtpSender")?.click();
+
+      }
+    },1000)
+    this.userService.sendOtp(this.formSignIn.value.email).subscribe(result=>console.log(result)
+    );
+  }
+  checkOtp(){
+    console.log(this.otp);
+    this.userService.checkOtp(this.formSignIn.value.email,this.otp).subscribe(result=>{
+      console.log(result);
+      
+      if(result=="OTP matched"){
+        this.submitAdmin();
+        this.timeLeft=300;
+        document.getElementById("closeOtpSender")?.click();
+      }
+      else{
+        alert(result);
+      }
+    }
+    )
   }
 }

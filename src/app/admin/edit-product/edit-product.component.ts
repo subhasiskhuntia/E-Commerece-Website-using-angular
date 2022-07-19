@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/product';
 import { ProductService } from 'src/app/product.service';
 
@@ -13,9 +14,12 @@ export class EditProductComponent implements OnInit {
   size: string = '';
   price: number = 0;
   quantity: number = 0;
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService,private router:Router) {}
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("role")!="ROLE_ADMIN"){
+      this.router.navigate(["/admin/adminHome"])
+    }
     this.loadAllProducts();
   }
   loadAllProducts() {

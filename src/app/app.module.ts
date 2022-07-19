@@ -55,7 +55,9 @@ import { AdminDashBoardComponent } from './admin/admin-dash-board/admin-dash-boa
 import { ChartComponent } from './admin/chart/chart.component';
 import { BrandSaleChartComponent } from './admin/brand-sale-chart/brand-sale-chart.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-
+import { AdminHomePageComponent } from './admin/admin-home-page/admin-home-page.component';
+import { ProductSalesWithInIntervalComponent } from './admin/product-sales-with-in-interval/product-sales-with-in-interval.component';
+import {DatePipe} from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,6 +95,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ChartComponent,
     BrandSaleChartComponent,
     UserProfileComponent,
+    AdminHomePageComponent,
+    ProductSalesWithInIntervalComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,6 +125,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       useClass: BasicAuthHtppInterceptorService,
       multi: true,
     },
+    DatePipe
   ],
   bootstrap: [AppComponent],
 })

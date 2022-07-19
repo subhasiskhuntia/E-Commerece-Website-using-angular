@@ -6,6 +6,7 @@ import { AddBannerComponent } from './admin/add-banner/add-banner.component';
 import { AddBrandComponent } from './admin/add-brand/add-brand.component';
 import { AddCategoryComponent } from './admin/add-category/add-category.component';
 import { AddProductComponent } from './admin/add-product/add-product.component';
+import { AdminHomePageComponent } from './admin/admin-home-page/admin-home-page.component';
 import { AdminComponent } from './admin/admin.component';
 import { BrandSaleChartComponent } from './admin/brand-sale-chart/brand-sale-chart.component';
 import { ChartComponent } from './admin/chart/chart.component';
@@ -13,6 +14,7 @@ import { EditBannerComponent } from './admin/edit-banner/edit-banner.component';
 import { EditBrandComponent } from './admin/edit-brand/edit-brand.component';
 import { EditCategoryComponent } from './admin/edit-category/edit-category.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
+import { ProductSalesWithInIntervalComponent } from './admin/product-sales-with-in-interval/product-sales-with-in-interval.component';
 import { CategoryWiseProductComponent } from './category-wise-product/category-wise-product.component';
 import { GenderWiseProductComponent } from './gender-wise-product/gender-wise-product.component';
 import { HomeComponent } from './home/home.component';
@@ -42,7 +44,9 @@ const routes: Routes = [
       { path: 'addBrand', component: AddBrandComponent },
       { path: 'editBrand', component: EditBrandComponent },
       {path:"chart",component:ChartComponent},
-      {path:"brandSale",component:BrandSaleChartComponent}
+      {path:"brandSale",component:BrandSaleChartComponent},
+      {path:"adminHome",component:AdminHomePageComponent},
+      {path:"productSales",component:ProductSalesWithInIntervalComponent}
     ],
   },
   { path: 'admin/login', component: AdminLoginComponent },
